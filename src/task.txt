@@ -1,0 +1,24 @@
+Products page
+    [
+        'Thumb',
+        'Title'
+        'Price'
+    ], [], []
+
+Product page
+    ['Home', 'Category']
+    [
+        'Thumb'
+        'Title'
+        'Desc'
+        'Price'
+        'Add to cart', 'See More Products'
+    ]
+
+Basket page
+    [
+        'Title', 'Quantity', 'Price'
+        'Shipping Charges', 'Total'
+        'Place order', 'Cancel Order'
+    ],
+    ['Contact form']
