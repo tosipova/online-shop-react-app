@@ -5,11 +5,23 @@
     border-radius: 12px;
     padding: 16px;
     font-family: Arial, Helvetica, sans-serif;
+    margin: 0 16px 32px;
 }
 
 .card__thumb {
     display: block;
     max-width: 100%;
+    margin-bottom: 16px;
+}
+
+.card__desc {
+    font-size: 12px;
+    line-height: 16px;
+    margin-bottom: 16px;
+}
+
+.card__desc a {
+    color: #575757c3;
 }
 
 .card__price {
@@ -19,20 +31,12 @@
     color: #151515;
 }
 
-.card__desc {
-    font-size: 12px;
-    line-height: 16px;
-    color: #575757c3;
-}
-
 .card__button {
     font-weight: 600;
     font-size: 15px;
     line-height: 22px;
     color: #FFFFFF;
     padding: 3px 12px;
-    /* width: 76px;
-    height: 36px; */
     background: #6A983C;
     border: 2px solid #46760A;
     box-sizing: border-box;

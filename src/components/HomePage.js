@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
-
-import fetchProducts from "../services/fetch-products";
 import product from "../product";
+import response from '../response';
 
 import Card from './card';
 
@@ -12,14 +11,17 @@ function HomePage() {
         // fetchProducts()
         //     .then(data =>
         //      setProducts(data))
-    }, [])  
+        setProducts(response.products)
+    }, [])
 
     return (
-        <div>
-            {/* 
-                products.map() =>  <Card product/>
-            */}
-            <Card product={product}/>
+        <div className="container row">
+            {products.map(product => {
+                return <Card
+                    {...product}
+                    key={products.id}
+                />
+            })}
         </div>
     )
 
