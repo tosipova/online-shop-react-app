@@ -5,6 +5,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import ProductPage from "./components/ProductPage";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
           <HomePage />
         </Route>
         <Route exact path="/:id">
-          {/* <ProductPage/> */}
+          <ProductPage/>
         </Route>
         <Route exact path="/checkout">
           {/* <BucketPage /> */}
@@ -22,5 +23,6 @@ function App() {
       </Switch>
     </Router>
   )
+  
 }
 export default App;

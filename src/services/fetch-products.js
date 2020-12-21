@@ -1,19 +1,7 @@
 import queryString from 'query-string';
 
-const API_URL = 'https://asos2.p.rapidapi.com/products/v2/list';
-const params = {
-    offset: '0',
-    categoryId: '4209',
-    limit: '16',
-    store: 'US',
-    country: 'US',
-    currency: 'USD',
-    sort: 'freshness',
-    lang: 'en-US',
-    sizeSchema: 'US'
-};
+const API_URL = 'https://asos2.p.rapidapi.com/products/v2/';
 
-const searchParams = queryString.stringify(params);
 
 const options = {
     method: 'GET',
@@ -23,8 +11,37 @@ const options = {
     }
 };
 
-function fetchProducts() {
-    return fetch(API_URL + '?' + searchParams, options)
-        .then((response) => response.json());
+
+
+
+const ProductService = {
+    fetchProducts() {
+        const params = {
+            offset: '0',
+            categoryId: '4209',
+            limit: '16',
+            store: 'US',
+            country: 'US',
+            currency: 'USD',
+            sort: 'freshness',
+            lang: 'en-US',
+            sizeSchema: 'US'
+        };
+
+        const searchParams = queryString.stringify(params);
+
+        return fetch(API_URL + 'list' + '?' + searchParams, options).then((response) => response.json());
+    },
+    fetchProduct(id = '9851612') {
+        const params = { id, store: 'US', sizeSchema: 'US', lang: 'en-US', currency: 'USD' }
+        const searchParams = queryString.stringify(params);
+
+        return (
+            fetch('https://asos2.p.rapidapi.com/products/v3/detail' + '?' + searchParams, options)
+                .then((response) => response.json())
+        );
+    }
 }
-export default fetchProducts;
+
+
+export default ProductService;

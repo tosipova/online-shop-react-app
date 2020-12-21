@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
-import product from "../product";
-import response from '../response';
+import response from '../mock/response';
 
 import Card from './card';
 
@@ -19,7 +18,8 @@ function HomePage() {
             {products.map(product => {
                 return <Card
                     {...product}
-                    key={products.id}
+                    key={product.id}
+                    
                 />
             })}
         </div>

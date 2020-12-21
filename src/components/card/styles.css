@@ -41,6 +41,7 @@
     border: 2px solid #46760A;
     box-sizing: border-box;
     border-radius: 12px;
+    text-decoration: none;
 }
 
 .card__row {
