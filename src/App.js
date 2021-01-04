@@ -5,7 +5,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import ProductPage from "./components/ProductPage";
+import ProductPage from "./pages/product";
 
 function App() {
   return (
