@@ -8,6 +8,31 @@ body {
 .row {
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
+}
+
+.col {
+  flex: 1;
+}
+
+/* .col:nth-child(odd) {
+  background-color: salmon;
+}
+
+.col:nth-child(even) {
+  background-color: royalblue
+} */
+
+.col-4 {
+  width: 25%;
+}
+
+.col-8 {
+  width: 75%;
+}
+
+.col-6 {
+  width: 50%;
 }
 
 .container {

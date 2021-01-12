@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "./styles.css"
 
-function Card(props) {
 
-    const { name, price, id, imageUrl } = props;
-    const httpsImgUrl = `https://${imageUrl}`;
+function BucketCard(props) {
+
+    const { name, price, id, media, onRemove } = props;
+    const httpsImgUrl = `https://${media.images[0].url}`;
+
 
     return (
         <div className="card">
@@ -18,10 +19,10 @@ function Card(props) {
 
             <div className="card__row">
                 <div className="card__price">{price.current.text}</div>
-                <Link to={`/product/${id}`} className="card__button">Buy Now</Link>
+                <button className="card__button" onClick={onRemove}>remove</button>
             </div>
         </div>
     )
 }
 
-export default Card;
+export default BucketCard;
