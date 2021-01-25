@@ -18,6 +18,10 @@
     border: 2px solid #46760A;
     box-sizing: border-box;
     border-radius: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px 48px;
 }
 
 .checkout__panel {
@@ -25,11 +29,6 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 10px;
-    left: 0px;
-    top: 0px;
-    flex: none;
-    order: 0;
-    flex-grow: 0;
     margin: 0px 12px;
 }
 
@@ -50,6 +49,8 @@
     border: 2px solid #46760A;
     box-sizing: border-box;
     border-radius: 12px;
+    color: #FFFFFF;
+    font-weight: bold;
 }
 
 .input-field {
@@ -85,4 +86,69 @@
 .subtotal {
     display: flex;
     justify-content: space-between;
+    font-family: Poppins;
+    font-style: normal;
+    line-height: 39px;
+    text-align: right;
 }
+
+.accent {
+    color: #6A983C;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 39px;
+    text-align: right;
+}
+
+.confirmation-item {
+    display: flex;
+    align-items: center;
+    padding: 9px 16px;
+    background: #F9F9F9;
+    border: 1px solid #D1D1D1;
+    box-sizing: border-box;
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 19px;
+    margin-bottom: 15px;
+}
+
+.confirmation-item input {
+    margin: 0px;
+    margin-right: 15px;
+}
+
+.radio-group {
+    display: flex;
+    justify-content: space-between;
+    background: #F9F9F9;
+    border: 1px solid #D1D1D1;
+    box-sizing: border-box;
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 13px 13px;
+    margin-bottom: 16px;
+}
+
+.color {
+    color: green;
+}
+
+/* .card-accent {
+    height: 60px;
+    width: 638px;
+    left: 0px;
+    top: 92px;
+    position: static;
+    width: 638px;
+    height: 60px;
+    left: 0px;
+    top: 92px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 0px 32px;
+} */

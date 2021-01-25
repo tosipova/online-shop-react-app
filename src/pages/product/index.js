@@ -2,29 +2,29 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import singleProduct from "../../mock/single-product";
 import BucketContext from "../bucket/context/bucket-context";
-
+import ImageGallery from 'react-image-gallery';
 import './styles.css';
 
 
 function ProductPage() {
-    const {add} = React.useContext(BucketContext)
+    const { add } = React.useContext(BucketContext)
     const [size, setSize] = React.useState("")
- 
-    // useEffect(() => {
-    //     ProductService.fetchProduct()
-    //         .then(data => console.log(data))
-    // }, [])
+    const images = singleProduct.media.images.map(image => {
+        return {original:`https://${image.url}`,
+        thumbnail:`https://${image.url}`}
+    })
+
     const history = useHistory()
 
     const onSelectChange = (event) => {
         setSize(event.target.value)
-       
+
     }
 
     const onAddToCart = () => {
         if (size) {
-          add({size,...singleProduct})
-          history.push("/checkout")
+            add({ size, ...singleProduct })
+            history.push("/checkout")
         }
     }
 
@@ -65,12 +65,12 @@ function ProductPage() {
                     </div>
                 </div>
 
-                <div className="col">
+                <div className="col"> 
+                <ImageGallery items={images}/>
+
                     <div className="product__thumbnails">
-                        {singleProduct.media.images.map(image => {
-                            return <img key={image.url} src={`https://${image.url}`} alt="" />
-                        })}
                     </div>
+
                 </div>
             </div>
         </div>

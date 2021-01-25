@@ -1,3 +1,6 @@
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
+
 .product__title {
     color: #151515;
     font-weight: 600;
