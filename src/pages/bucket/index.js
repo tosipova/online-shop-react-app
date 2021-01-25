@@ -10,7 +10,9 @@ function BucketPage() {
     console.log(products)
 
     // const initState = {firstName:'', lastName:'', emailAddress:'', phonenumber:'', address:"",country:"",city:"",zip:""}
-    const [formState, setFormState] = React.useState({})
+    const [formState, setFormState] = React.useState({
+        shipping: "fedex"
+    })
 
     const onChange = (event, fieldName) => {
         console.log('onChange %s', fieldName, event.target.value)
@@ -28,14 +30,18 @@ function BucketPage() {
         return acc + currentValue.price.current.value;
     }, 0)
 
-    const shipping = sum > 50 ? 0 : 5
+    // Сделать метод доставки по умолчанию
+    // Посмотреть текущее значение доставки dhl || fedex
+    // Зафиксировать её в переменную shipping
+
+    const shipping = formState.shipping === 'fedex' ? 10 : 5;
     const totalOrder = sum + tax * sum + shipping
 
     return (
         <div className="cart__container row">
             <div className="col col-8">
                 <CheckoutPanel title="Billing Info" className="row">
-                    <div className="col col-6">
+                    <div className="col col-6 input-group">
                         <InputField name="firstName" label="First Name" formState={formState} onChange={onChange} />
                         <InputField name="emailAddress" label="Email Address" formState={formState} onChange={onChange} />
                         <InputField name="address" label="Address" formState={formState} onChange={onChange} />
@@ -54,7 +60,7 @@ function BucketPage() {
                     <RadioGroup
                         label="FedEx"
                         name="shipping"
-                        title={(<><span className="color">+ 32$</span> Additional price</>)}
+                        title={(<><span className="color">+ 10$</span> Additional price</>)}
                         formState={formState}
                         onChange={onChange}
                         icon={
@@ -65,12 +71,13 @@ function BucketPage() {
                             </svg>
                             )}
                         value="fedex"
+                        checked={formState.shipping === 'fedex'}
                     />
 
                     <RadioGroup
                         label="DHL"
                         name="shipping"
-                        title={(<><span className="color">+ 15$</span> Additional price</>)}
+                        title={(<><span className="color">+ 5$</span> Additional price</>)}
                         formState={formState}
                         onChange={onChange}
                         icon={(
@@ -80,6 +87,7 @@ function BucketPage() {
 
                         )}
                         value="dhl"
+                        checked={formState.shipping === 'dhl'}
                     />
 
 
@@ -109,15 +117,6 @@ function BucketPage() {
                             </svg>
 
                         )
-//                             (
-                            
-// <svg width="33" height="20" viewBox="0 0 33 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-// <path d="M20.9607 2.13867H12.0381V17.8609H20.9607V2.13867Z" fill="#FF5F00"/>
-// <path d="M12.6049 10C12.6049 6.80556 14.1345 3.97222 16.4855 2.13889C14.7576 0.805556 12.5766 0 10.1972 0C4.56042 0 0 4.47222 0 10C0 15.5278 4.56042 20 10.1972 20C12.5766 20 14.7576 19.1944 16.4855 17.8611C14.1345 16.0556 12.6049 13.1944 12.6049 10Z" fill="#EB001B"/>
-// <path d="M33.0002 10C33.0002 15.5278 28.4397 20 22.8029 20C20.4236 20 18.2425 19.1944 16.5146 17.8611C18.894 16.0278 20.3953 13.1944 20.3953 10C20.3953 6.80556 18.8657 3.97222 16.5146 2.13889C18.2425 0.805556 20.4236 0 22.8029 0C28.4397 0 33.0002 4.5 33.0002 10Z" fill="#F79E1B"/>
-// </svg>
-
-                           
                         }
                         value="creditCard"
                     />
@@ -126,9 +125,9 @@ function BucketPage() {
                         <>
                             <InputField name="cardNumber" label="Card Number" formState={formState} onChange={onChange} />
                             <div className="card-accent">
-                            <InputField className ="card-holder" name="cardHolder" label="Card Holder" formState={formState} onChange={onChange} />
-                            <InputField name="expirationDate" label="Expiration Date" formState={formState} onChange={onChange} />
-                            <InputField name="CVC" label="CVC" formState={formState} onChange={onChange} />
+                                <InputField className="card-holder" name="cardHolder" label="Card Holder" formState={formState} onChange={onChange} />
+                                <InputField name="expirationDate" label="Expiration Date" formState={formState} onChange={onChange} />
+                                <InputField name="CVC" label="CVC" formState={formState} onChange={onChange} />
                             </div>
                         </>
                     )}
@@ -189,10 +188,10 @@ function BucketPage() {
                     <CheckBoxField
                         id="newsletter"
                         name="newsletter"
-                        label="I agree with sending marketing and newslatter events.No spam, promised"
+                        label="I agree with sending marketing and newslatter events.No spam, promised."
                     />
 
-                    <CheckBoxField id="terms" name="terms" label=" I agree with our terms and conditions and privacy policy" />
+                    <CheckBoxField id="terms" name="terms" label=" I agree with our terms and conditions and privacy policy." />
 
                     <div>
                         <button className="cart__button" onClick={onSubmitOrder}>Complete order</button>
@@ -219,7 +218,7 @@ function BucketPage() {
                 <CheckoutPanel>
                     <Subtotal title="Subtotal:" value={`${sum}$`} />
                     <Subtotal title="Tax:" value={`${tax * 100}%`} />
-                    <Subtotal title="Shipping" value={`${shipping}%`} />
+                    <Subtotal title="Shipping" value={`${shipping}$`}/>
 
                     <Subtotal title="Total order" value={<span className="accent">{`${totalOrder}$`}</span>} />
                 </CheckoutPanel>
@@ -254,15 +253,12 @@ function InputField({ name, label, type = "text", formState, placeholder, onChan
         </div>
     )
 }
-// <RadioGroup label="Fedex"/>
-// <RadioGroup label="DHL"/>
-// <RadioGroup label="Btc"/>
 
-function RadioGroup({ label, name, title, formState, onChange, icon, value }) {
+function RadioGroup({ label, name, title, onChange, icon, value, checked }) {
 
     return (
         <div className="radio-group">
-            <label> <input name={name} type="radio" value={value} onChange={event => onChange(event, name)} /> {label}</label>
+            <label> <input name={name} type="radio" value={value} onChange={event => onChange(event, name)} checked={checked} /> {label}</label>
             {title && <span>{title}</span>}
             {icon}
         </div>
